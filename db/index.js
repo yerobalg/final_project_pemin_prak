@@ -30,16 +30,17 @@ db.prodi = require('../src/models/prodi.model')(sequelize,Sequelize);
 db.mahasiswa.belongsToMany(db.matakuliah, {
     through: "mahasiswa_matakuliah",
     as: "mata_kuliah",
-    foreignKey: "mahasiswa_id"
+    foreignKey: "mhsNim"
 })
 db.matakuliah.belongsToMany(db.mahasiswa, {
     through: "mahasiswa_matakuliah",
     as: "mahasiswa",
-    foreignKey: "matakuliah_id"
+    foreignKey: "mkId"
 })
 
 db.prodi.hasMany(db.mahasiswa, {foreignKey: 'id'})
 db.mahasiswa.belongsTo(db.prodi)
+
 
 
 

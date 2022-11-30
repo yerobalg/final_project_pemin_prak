@@ -25,7 +25,7 @@ module.exports = (sequelize, Sequelize) => {
         paranoid: true,
         freezeTableName: true,
         underscored: true,
-        indexes: [{ unique: true}, { fields: ["deleted_at"] }],
+        indexes: [{ unique: true, fields: ["id"]}, { fields: ["deleted_at"] }],
       }
     );
     return Prodi;

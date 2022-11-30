@@ -4,7 +4,7 @@ const MatakuliahRepository = require("./matakuliah.repo");
 class Repository {
   constructor(db) {
     this.db = db;
-    this.mahasiswa = new MahasiswaRepository(db.mahasiswa);
+    this.mahasiswa = new MahasiswaRepository(db.mahasiswa, db.matakuliah);
     this.matakuliah = new MatakuliahRepository(db.matakuliah);
   }
 }

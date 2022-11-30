@@ -33,7 +33,7 @@ app.listen(8080, async () => {
   try {
     await db.sequelize.sync(
       {alter: true}
-      // {alter:true}
+      // {force:true}
       );
     console.log("database connected");
 
