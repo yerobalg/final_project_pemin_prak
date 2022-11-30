@@ -1,4 +1,3 @@
-const Mahasiswa = require("./mahasiswa.model");
 module.exports = (sequelize, Sequelize) => {
   const Matakuliah = sequelize.define(
     "matakuliah",
@@ -7,9 +6,10 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         type: Sequelize.INTEGER,
         allowNull: false,
+        autoIncrement: true
       },
       nama: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {
@@ -28,7 +28,5 @@ module.exports = (sequelize, Sequelize) => {
       indexes: [{ unique: true, fields: ["id"] }, { fields: ["deleted_at"] }],
     }
   );
-  Matakuliah.hasMany(Mahasiswa, { through: "mahasiswa_matakuliah" });
-  Mahasiswa.hasMany(Matakuliah, { through: "mahasiswa_matakuliah" });
   return Matakuliah;
 };

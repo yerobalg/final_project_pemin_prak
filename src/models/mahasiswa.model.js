@@ -2,14 +2,18 @@ module.exports = (sequelize, Sequelize) => {
   const Mahasiswa = sequelize.define(
     "mahasiswa",
     {
+      nim: {
+        type: Sequelize.STRING,
+        primaryKey: true
+      },
       nama: {
         type: Sequelize.STRING,
       },
-      nim: {
+      password: {
         type: Sequelize.STRING,
       },
-      jurusan: {
-        type: Sequelize.STRING,
+      angkatan: {
+        type:Sequelize.INTEGER,
       },
       createdAt: {
         type: Sequelize.BIGINT,
