@@ -9,12 +9,13 @@ class Route {
 
   authRoutes = () => {
     // TODO: add login and register routes here
+    this.router.post("/register", this.mahasiswa.create);
+    this.router.post("/login", this.mahasiswa.login);
 
     return this.router;
   };
 
   protectedRoutes = () => {
-    this.router.post("/mahasiswa", this.mahasiswa.create);
     this.router.put(
       "/mahasiswa/:nim/matakuliah/:mkId",
       this.mahasiswa.ambilMatkul

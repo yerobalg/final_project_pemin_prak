@@ -1,3 +1,7 @@
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET_KEY, JWT_EXPIRED_SEC } = require("../../config");
+
 class MahasiswaController {
   constructor(mahasiswaRepository, response) {
     this.mahasiswaRepository = mahasiswaRepository;
@@ -7,6 +11,7 @@ class MahasiswaController {
   create = async (req, res, next) => {
     const { body } = req;
     try {
+      body.password = await bcrypt.hash(body.password, 10);
       const mahasiswa = await this.mahasiswaRepository.create(body);
       this.response.success(
         res,
@@ -54,6 +59,42 @@ class MahasiswaController {
         nim
       );
       this.response.success(res, 200, "Berhasil mendapatkan data", mahasiswa);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  };
+
+  login = async (req, res, next) => {
+    const { body } = req;
+    try {
+      const mahasiswa = await this.mahasiswaRepository.getMahasiswaWithMatkul(
+        body.nim
+      );
+      if (!mahasiswa) {
+        this.response.error(res, 404, "Mahasiswa tidak ditemukan", null);
+        return;
+      }
+      const comparePassword = await bcrypt.compare(
+        body.password,
+        mahasiswa.password
+      );
+      if (!comparePassword) {
+        this.response.error(res, 401, "Password Salah", null);
+        return;
+      }
+
+      const mahasiswaOutput = {
+        nim: mahasiswa.nim,
+        nama: mahasiswa.nama,
+        angkatan: mahasiswa.angkatan,
+        prodi_id: mahasiswa.prodi_id,
+      };
+      console.log(Math.floor(Date.now()));
+      const token = jwt.sign(mahasiswaOutput, JWT_SECRET_KEY, {
+        expiresIn: JWT_EXPIRED_SEC,
+      });
+      this.response.success(res, 200, "Login Berhasil", { mahasiswa, token });
     } catch (error) {
       console.log(error);
       next(error);

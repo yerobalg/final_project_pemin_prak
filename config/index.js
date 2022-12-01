@@ -6,4 +6,6 @@ module.exports = {
   DB_USERNAME: process.env.DB_USERNAME,
   DB_PASSWORD: process.env.DB_PASSWORD,
   DB_DATABASE: process.env.DB_DATABASE,
+  JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
+  JWT_EXPIRED_SEC: parseInt(process.env.JWT_EXPIRED_SEC),
 };
