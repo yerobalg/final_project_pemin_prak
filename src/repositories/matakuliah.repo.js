@@ -5,13 +5,13 @@ class MatakuliahRepository {
 
   create = async (judul) => {
     return await this.Matakuliah.create({
-      nama: judul
+      nama: judul,
     });
   };
 
-  getAll = async() => {
-    return await this.Matakuliah.findAll()
-  }
+  getAll = async () => {
+    return await this.Matakuliah.findAll();
+  };
 }
 
 module.exports = MatakuliahRepository;

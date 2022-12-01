@@ -4,7 +4,7 @@ module.exports = (sequelize, Sequelize) => {
     {
       nim: {
         type: Sequelize.STRING,
-        primaryKey: true
+        primaryKey: true,
       },
       nama: {
         type: Sequelize.STRING,
@@ -13,7 +13,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
       },
       angkatan: {
-        type:Sequelize.INTEGER,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         type: Sequelize.BIGINT,
@@ -28,9 +28,8 @@ module.exports = (sequelize, Sequelize) => {
       paranoid: true,
       freezeTableName: true,
       underscored: true,
-      indexes: [{ unique: true, fields: ["nim"] }, { fields: ["deleted_at"] }],
+      indexes: [{ fields: ["deleted_at"] }],
     }
   );
   return Mahasiswa;
 };
-

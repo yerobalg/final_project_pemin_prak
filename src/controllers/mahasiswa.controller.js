@@ -23,7 +23,11 @@ class MahasiswaController {
     const { nim, mkId } = req.params;
     try {
       await this.mahasiswaRepository.ambilMahasiswaWithMatkul(nim, mkId);
-      this.response.success(res, 200, "Matakuliah berhasil ditambahkan ke Mahasiswa");
+      this.response.success(
+        res,
+        200,
+        "Matakuliah berhasil ditambahkan ke Mahasiswa"
+      );
     } catch (error) {
       next(error);
     }

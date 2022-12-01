@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         type: Sequelize.INTEGER,
         allowNull: false,
-        autoIncrement: true
+        autoIncrement: true,
       },
       nama: {
         type: Sequelize.STRING,
@@ -25,7 +25,7 @@ module.exports = (sequelize, Sequelize) => {
       paranoid: true,
       freezeTableName: true,
       underscored: true,
-      indexes: [{ unique: true, fields: ["id"] }, { fields: ["deleted_at"] }],
+      indexes: [{ fields: ["deleted_at"] }],
     }
   );
   return Matakuliah;

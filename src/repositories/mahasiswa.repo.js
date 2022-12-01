@@ -12,14 +12,6 @@ class MahasiswaRepository {
     return await this.mahasiswa.findAll();
   };
 
-  ambilMatkul = async (nim, mkId) => {
-    return await this.mahasiswa.update({
-      where: {
-        nim: nim,
-      },
-    });
-  };
-
   getMahasiswaWithMatkul = async (nim) => {
     return await this.mahasiswa.findByPk(nim, {
       include: {
@@ -29,11 +21,11 @@ class MahasiswaRepository {
     });
   };
 
-  ambilMahasiswaWithMatkul = async(nim,mkId) => {
-    const mahasiswaObj = await this.mahasiswa.findByPk(nim)
-    const matakuliahObj = await this.matakuliah.findByPk(mkId)
-    await matakuliahObj.addMahasiswa(mahasiswaObj)
-  }
+  ambilMahasiswaWithMatkul = async (nim, mkId) => {
+    const mahasiswaObj = await this.mahasiswa.findByPk(nim);
+    const matakuliahObj = await this.matakuliah.findByPk(mkId);
+    await matakuliahObj.addMahasiswa(mahasiswaObj);
+  };
 }
 
 module.exports = MahasiswaRepository;
