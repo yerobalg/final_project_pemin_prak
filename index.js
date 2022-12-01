@@ -3,7 +3,7 @@ const db = require("./db");
 const Repository = require("./src/repositories");
 const Controller = require("./src/controllers");
 const Route = require("./src/routes");
-const Middleware = require("./src/middlewares")
+const Middleware = require("./src/middlewares");
 const Util = require("./utils");
 
 // Init util
@@ -31,7 +31,7 @@ app.use(middleware.notFoundHandler);
 
 app.listen(8080, async () => {
   try {
-    await db.sequelize.sync({force:true});
+    await db.sequelize.sync({ alter: true });
     console.log("database connected");
 
     console.log("server running on port 8080");
