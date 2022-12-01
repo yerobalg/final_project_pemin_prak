@@ -1,7 +1,8 @@
 class MahasiswaRepository {
-  constructor(Mahasiswa, Matakuliah) {
+  constructor(Mahasiswa, Matakuliah, Prodi) {
     this.mahasiswa = Mahasiswa;
     this.matakuliah = Matakuliah;
+    this.prodi = Prodi;
   }
 
   create = async (data) => {
@@ -13,11 +14,18 @@ class MahasiswaRepository {
   };
 
   getMahasiswaWithMatkul = async (nim) => {
+    console.log(this.prodi);
     return await this.mahasiswa.findByPk(nim, {
-      include: {
-        model: this.matakuliah,
-        as: "mata_kuliah",
-      },
+      include: [
+        {
+          model: this.matakuliah,
+          as: "mata_kuliah",
+        },
+        {
+          model: this.prodi,
+          as: "prodi",
+        },
+      ],
     });
   };
 

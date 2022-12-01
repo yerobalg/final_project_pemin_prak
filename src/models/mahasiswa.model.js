@@ -8,13 +8,16 @@ module.exports = (sequelize, Sequelize) => {
       },
       nama: {
         type: Sequelize.STRING,
-        primaryKey:true
       },
       password: {
         type: Sequelize.STRING,
       },
       angkatan: {
         type: Sequelize.INTEGER,
+      },
+      prodi_id: {
+        type: Sequelize.INTEGER,
+        references: { model: "prodi" },
       },
       createdAt: {
         type: Sequelize.BIGINT,

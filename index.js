@@ -31,7 +31,7 @@ app.use(middleware.notFoundHandler);
 
 app.listen(8080, async () => {
   try {
-    await db.sequelize.sync({ alter: true });
+    await db.sequelize.sync({ force: true });
     console.log("database connected");
 
     console.log("server running on port 8080");
