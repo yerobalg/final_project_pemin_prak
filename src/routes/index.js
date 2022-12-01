@@ -15,7 +15,6 @@ class Route {
 
   protectedRoutes = () => {
     this.router.post("/mahasiswa", this.mahasiswa.create);
-    this.router.get("/mahasiswa/:id", this.mahasiswa.get);
     this.router.put(
       "/mahasiswa/:nim/matakuliah/:mkId",
       this.mahasiswa.ambilMatkul
