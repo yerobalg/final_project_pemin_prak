@@ -24,5 +24,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.mahasiswa = require('../src/models/mahasiswa.model')(sequelize, Sequelize);
+db.prodi = require('../src/models/prodi.model')(sequelize,Sequelize);
 
 module.exports = db;

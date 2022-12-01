@@ -7,8 +7,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       nim: {
         type: Sequelize.STRING,
+        primaryKey:true
       },
-      jurusan: {
+      password: {
         type: Sequelize.STRING,
       },
       createdAt: {
