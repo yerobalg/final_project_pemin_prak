@@ -1,20 +1,16 @@
 module.exports = (sequelize, Sequelize) => {
-  const Mahasiswa = sequelize.define(
-    "mahasiswa",
+  const Prodi = sequelize.define(
+    "prodi",
     {
-      nim: {
-        type: Sequelize.STRING,
+      id: {
         primaryKey: true,
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
       },
       nama: {
         type: Sequelize.STRING,
-        primaryKey:true
-      },
-      password: {
-        type: Sequelize.STRING,
-      },
-      angkatan: {
-        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.BIGINT,
@@ -32,5 +28,5 @@ module.exports = (sequelize, Sequelize) => {
       indexes: [{ fields: ["deleted_at"] }],
     }
   );
-  return Mahasiswa;
+  return Prodi;
 };
