@@ -10,7 +10,7 @@ class Middleware {
       res,
       err.statusCode || 500,
       "Terjadi kesalahan",
-      err || null
+      err
     );
   };
 
