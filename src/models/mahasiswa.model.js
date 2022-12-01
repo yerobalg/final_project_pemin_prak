@@ -8,16 +8,20 @@ module.exports = (sequelize, Sequelize) => {
       },
       nama: {
         type: Sequelize.STRING,
+        allowNull: false,
       },
       password: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
+        allowNull: false,
       },
       angkatan: {
         type: Sequelize.INTEGER,
+        allowNull: false,
       },
       prodi_id: {
         type: Sequelize.INTEGER,
         references: { model: "prodi" },
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.BIGINT,

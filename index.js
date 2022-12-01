@@ -24,14 +24,14 @@ const route = new Route(express.Router(), controllers);
 // Init app
 const app = express();
 app.use(express.json());
-app.use("api/v1/auth", route.authRoutes());
+app.use("/api/v1/auth/", route.authRoutes());
 app.use("/api/v1/", route.protectedRoutes());
 app.use(middleware.errorHandler);
 app.use(middleware.notFoundHandler);
 
 app.listen(8080, async () => {
   try {
-    await db.sequelize.sync({ force: true });
+    await db.sequelize.sync({ alter: true });
     console.log("database connected");
 
     console.log("server running on port 8080");
