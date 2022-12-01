@@ -38,7 +38,7 @@ db.matakuliah.belongsToMany(db.mahasiswa, {
   foreignKey: "mkId",
 });
 
-db.prodi.hasMany(db.mahasiswa, { foreignKey: "id" });
+db.prodi.hasMany(db.mahasiswa);
 db.mahasiswa.belongsTo(db.prodi);
 
 module.exports = db;
