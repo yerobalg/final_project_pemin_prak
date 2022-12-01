@@ -10,6 +10,7 @@ class Repository {
       db.matakuliah,
       db.prodi
     );
+
     this.prodi = new ProdiRepository(db.prodi);
     this.matakuliah = new MatakuliahRepository(db.matakuliah);
   }
