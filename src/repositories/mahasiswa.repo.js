@@ -34,6 +34,12 @@ class MahasiswaRepository {
     const matakuliahObj = await this.matakuliah.findByPk(mkId);
     await matakuliahObj.addMahasiswa(mahasiswaObj);
   };
+
+  deleteMatkul = async (nim, mkId) => {
+    const mahasiswaObj = await this.mahasiswa.findByPk(nim);
+    const matakuliahObj = await this.matakuliah.findByPk(mkId);
+    await matakuliahObj.removeMahasiswa(mahasiswaObj);
+  }
 }
 
 module.exports = MahasiswaRepository;

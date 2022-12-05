@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const db = require("./db");
 const Repository = require("./src/repositories");
 const Controller = require("./src/controllers");
@@ -19,11 +20,12 @@ const controllers = new Controller(repositories, util.response);
 const middleware = new Middleware(util.response);
 
 // Init route
-const route = new Route(express.Router(), controllers);
+const route = new Route(express.Router(), controllers, middleware);
 
 // Init app
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use("/api/v1/auth/", route.authRoutes());
 app.use("/api/v1/", route.protectedRoutes());
 app.use(middleware.errorHandler);

@@ -1,17 +1,31 @@
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET_KEY } = require("../../config");
+
 class Middleware {
   constructor(response) {
     this.response = response;
   }
 
-  // TODO: add authorization middleware
+  authMiddleware = (req, res, next) => {
+    let token = req.headers.authorization || null;
+    try {
+      if (!token) {
+        this.response.error(res, 401, "Please login first", null);
+        return;
+      }
+      token = token.split(" ")[1];
+
+      const decoded = jwt.verify(token, JWT_SECRET_KEY);
+      req.user = decoded;
+
+      return next();
+    } catch (error) {
+      return next(error);
+    }
+  };
 
   errorHandler = (err, req, res, next) => {
-    this.response.error(
-      res,
-      err.statusCode || 500,
-      "Terjadi kesalahan",
-      err
-    );
+    this.response.error(res, err.statusCode || 500, "Terjadi kesalahan", err);
   };
 
   notFoundHandler = (req, res, next) => {

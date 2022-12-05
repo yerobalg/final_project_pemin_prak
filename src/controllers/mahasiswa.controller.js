@@ -24,6 +24,16 @@ class MahasiswaController {
     }
   };
 
+  profile = (req, res, next) => {
+    const { user } = req;
+    this.response.success(
+      res,
+      200,
+      "Berhasil mendapatkan profil mahasiswa",
+      user
+    );
+  };
+
   ambilMatkul = async (req, res, next) => {
     const { nim, mkId } = req.params;
     try {
@@ -58,6 +68,10 @@ class MahasiswaController {
       const mahasiswa = await this.mahasiswaRepository.getMahasiswaWithMatkul(
         nim
       );
+      if (!mahasiswa) {
+        this.response.error(res, 404, "Mahasiswa tidak ditemukan", null);
+        return;
+      }
       this.response.success(res, 200, "Berhasil mendapatkan data", mahasiswa);
     } catch (error) {
       console.log(error);
@@ -97,6 +111,20 @@ class MahasiswaController {
       this.response.success(res, 200, "Login Berhasil", { mahasiswa, token });
     } catch (error) {
       console.log(error);
+      next(error);
+    }
+  };
+
+  deleteMatkul = async (req, res, next) => {
+    const { nim, mkId } = req.params;
+    try {
+      await this.mahasiswaRepository.deleteMatkul(nim, mkId);
+      this.response.success(
+        res,
+        200,
+        "Matakuliah berhasil dihapus dari mahasiswa"
+      );
+    } catch (error) {
       next(error);
     }
   };
