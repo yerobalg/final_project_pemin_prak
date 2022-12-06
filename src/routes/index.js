@@ -16,12 +16,12 @@ class Route {
   };
 
   protectedRoutes = () => {
-    this.router.put(
+    this.router.post(
       "/mahasiswa/:nim/matakuliah/:mkId",
       this.middleware.authMiddleware,
       this.mahasiswa.ambilMatkul
     );
-    this.router.delete(
+    this.router.put(
       "/mahasiswa/:nim/matakuliah/:mkId",
       this.middleware.authMiddleware,
       this.mahasiswa.deleteMatkul
@@ -31,29 +31,17 @@ class Route {
       this.middleware.authMiddleware,
       this.mahasiswa.profile
     );
-    this.router.get(
-      "/mahasiswa/:nim",
-      this.middleware.authMiddleware,
-      this.mahasiswa.ambilMahasiswaWithMatkul
-    );
-    this.router.get(
-      "/mahasiswa/",
-      this.middleware.authMiddleware,
-      this.mahasiswa.ambilSeluruhMahasiswa
-    );
+    this.router.get("/mahasiswa/:nim", this.mahasiswa.ambilMahasiswaWithMatkul);
+    this.router.get("/mahasiswa/", this.mahasiswa.ambilSeluruhMahasiswa);
 
-    this.router.get("/prodi", this.middleware.authMiddleware, this.prodi.get);
+    this.router.get("/prodi", this.prodi.get);
 
     this.router.post(
       "/matakuliah",
       this.middleware.authMiddleware,
       this.matakuliah.create
     );
-    this.router.get(
-      "/matakuliah",
-      this.middleware.authMiddleware,
-      this.matakuliah.getAll
-    );
+    this.router.get("/matakuliah", this.matakuliah.getAll);
     return this.router;
   };
 }

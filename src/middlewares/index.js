@@ -7,13 +7,12 @@ class Middleware {
   }
 
   authMiddleware = (req, res, next) => {
-    let token = req.headers.authorization || null;
+    let token = req.headers.token || null;
     try {
       if (!token) {
         this.response.error(res, 401, "Please login first", null);
         return;
       }
-      token = token.split(" ")[1];
 
       const decoded = jwt.verify(token, JWT_SECRET_KEY);
       req.user = decoded;

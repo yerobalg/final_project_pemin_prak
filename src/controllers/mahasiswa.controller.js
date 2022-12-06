@@ -104,7 +104,6 @@ class MahasiswaController {
         angkatan: mahasiswa.angkatan,
         prodi_id: mahasiswa.prodi_id,
       };
-      console.log(Math.floor(Date.now()));
       const token = jwt.sign(mahasiswaOutput, JWT_SECRET_KEY, {
         expiresIn: JWT_EXPIRED_SEC,
       });

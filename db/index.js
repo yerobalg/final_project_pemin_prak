@@ -29,7 +29,7 @@ db.matakuliah = require("../src/models/matakuliah.model")(sequelize, Sequelize);
 
 db.mahasiswa.belongsToMany(db.matakuliah, {
   through: "mahasiswa_matakuliah",
-  as: "mata_kuliah",
+  as: "matakuliah",
   foreignKey: "mhsNim",
 });
 db.matakuliah.belongsToMany(db.mahasiswa, {
