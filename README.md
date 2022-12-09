@@ -1,6 +1,7 @@
 # Final Project Pemin Prak
 
-This API is for the final project in college, it implements dependency injection instead of using direct import using JavaScript and proper use of error handling to improve scalability
+- This API is for the final project in college, it implements dependency injection instead of using direct import to improve scalability and testabilty
+- Proper use of error handling
 
 # Pre Requisite
 - NodeJS v19
